@@ -233,8 +233,8 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	var opts = {
 		method: 'GET',
 		url: this.host + '/' + cmd.name + ':' + this.port,
-		withCredentials: false
-		opts.sync = true;
+		withCredentials: false,
+		sync: true
 	};
 
 	if((cmd.body) && typeof cmd.body === 'object') {
