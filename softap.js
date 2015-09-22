@@ -144,7 +144,7 @@ SoftAP.prototype.setClaimCode = function(code, cb) {
 SoftAP.prototype.configure = function configure(opts, cb) {
 
 	is(cb);
-
+	console.log(opts);
 	var securePass = undefined;
 
 	if(!this.__publicKey) {
@@ -238,7 +238,7 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 
 	if((cmd.body) && typeof cmd.body === 'object') {
 		opts.json = cmd.body;
-		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate' };
+		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '*/*' };
 		opts.method = 'POST';
 	}
 	
