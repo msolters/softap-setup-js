@@ -241,6 +241,7 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 		payload = JSON.stringify(cmd.body);
 		opts.headers = { 'Content-Length': payload.length };
 		opts.method = 'POST';
+		opts.withCredentials: true;
 	}
 
 	sock = http.request(opts, function responseHandler(res) {
