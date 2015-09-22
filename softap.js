@@ -233,23 +233,21 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	var opts = {
 		method: 'GET',
 		url: 'http://' + this.host + '/' + cmd.name,
-		withCredentials: false,
-		//sync: true
+		withCredentials: false
 	};
 
 	if((cmd.body) && typeof cmd.body === 'object') {
-		//payload = JSON.stringify(cmd.body);
-		//opts.body = payload;
 		opts.json = cmd.body;
 		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate' };
 		opts.method = 'POST';
 	}
-	console.log(opts);
+	
 	xhr( opts, function(err, resp, body) {
-		console.error(err);
-		console.log(resp);
-		console.log(body);
-		data(body);
+		if (err) {
+			error();
+		} else {
+			data(body);
+		}
 	} );
 	
 	/*sock = http.request(opts, function responseHandler(res) {
