@@ -240,7 +240,7 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	if((cmd.body) && typeof cmd.body === 'object') {
 		payload = JSON.stringify(cmd.body);
 		opts.body = payload;
-		opts.headers = { 'Content-Length': payload.length };
+		//opts.headers = { 'Content-Length': payload.length };
 		opts.method = 'POST';
 	}
 	console.log(opts);
