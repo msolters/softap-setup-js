@@ -244,25 +244,10 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	
 	xhr( opts, function(err, resp, body) {
 		if (err) {
-			error();
-		} else {
-			data(body);
+			console.error( err );
 		}
+		data(body);
 	} );
-	
-	/*sock = http.request(opts, function responseHandler(res) {
-		var results = '';
-		res.on('data', function dataHandler(chunk) {
-			if(chunk) { results += chunk.toString(); }
-		});
-		res.on('end', function () {
-			data(results);
-		});
-	});
-
-	sock.on('error', error);
-	payload && sock.write(payload);
-	sock.end();*/
 
 	return;
 };
