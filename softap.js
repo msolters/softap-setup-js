@@ -3,6 +3,7 @@ module.exports = SoftAP;
 var net = require('net');
 var util = require('util');
 var http = require('http');
+var xhr = require('xhr');
 var rsa = require('node-rsa');
 
 var defaults = {
@@ -231,19 +232,26 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 
 	var opts = {
 		method: 'GET',
-		path: '/' + cmd.name,
-		hostname: this.host,
-		port: this.port,
+		url: this.host + '/' + cmd.name + ':' + this.port,
 		withCredentials: false
+		opts.sync = true;
 	};
 
 	if((cmd.body) && typeof cmd.body === 'object') {
 		payload = JSON.stringify(cmd.body);
+		opts.body = payload;
 		opts.headers = { 'Content-Length': payload.length };
 		opts.method = 'POST';
 	}
-
-	sock = http.request(opts, function responseHandler(res) {
+	console.log(opts);
+	xhr( opts, function(err, resp, body) {
+		console.error(err);
+		console.log(resp);
+		console.log(body);
+		data(body);
+	} );
+	
+	/*sock = http.request(opts, function responseHandler(res) {
 		var results = '';
 		res.on('data', function dataHandler(chunk) {
 			if(chunk) { results += chunk.toString(); }
@@ -255,9 +263,9 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 
 	sock.on('error', error);
 	payload && sock.write(payload);
-	sock.end();
+	sock.end();*/
 
-	return sock;
+	return;
 };
 
 SoftAP.prototype.__sendCommand = function(cmd, cb) {
