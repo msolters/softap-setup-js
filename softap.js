@@ -238,9 +238,9 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	};
 
 	if((cmd.body) && typeof cmd.body === 'object') {
-		payload = JSON.stringify(cmd.body);
-		opts.body = payload;
-		opts.json = true;
+		//payload = JSON.stringify(cmd.body);
+		//opts.body = payload;
+		opts.json = cmd.body;
 		//opts.headers = { 'Content-Length': payload.length };
 		opts.method = 'POST';
 	}
