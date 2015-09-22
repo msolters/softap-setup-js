@@ -241,7 +241,7 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 		//payload = JSON.stringify(cmd.body);
 		//opts.body = payload;
 		opts.json = cmd.body;
-		opts.headers = { 'Content-Type', 'multipart/form-data' };
+		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate' };
 		opts.method = 'POST';
 	}
 	console.log(opts);
