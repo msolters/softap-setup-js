@@ -242,7 +242,7 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 		//opts.body = payload;
 		opts.json = cmd.body;
 		//opts.headers = { 'Content-Length': payload.length };
-		opts.method = 'POST';
+		//opts.method = 'POST';
 	}
 	console.log(opts);
 	xhr( opts, function(err, resp, body) {
