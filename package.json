@@ -3,7 +3,10 @@
   "version": "3.0.1",
   "description": "Node Client for SoftAP Setup",
   "main": "index.js",
-  "browser": "./softap.js",
+  "browser": {
+    "main": "./softap.js",
+    "http": "http-browserify-xdr"
+  },
   "scripts": {
     "test": "mocha test/"
   },
