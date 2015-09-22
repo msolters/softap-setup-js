@@ -241,8 +241,8 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 		//payload = JSON.stringify(cmd.body);
 		//opts.body = payload;
 		opts.json = cmd.body;
-		//opts.headers = { 'Content-Length': payload.length };
-		//opts.method = 'POST';
+		opts.headers = { 'Transfer-Encoding': 'chunked' };
+		opts.method = 'POST';
 	}
 	console.log(opts);
 	xhr( opts, function(err, resp, body) {
