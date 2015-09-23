@@ -237,14 +237,14 @@ SoftAP.prototype.__httpRequest = function __httpRequest(cmd, data, error) {
 	};
 
 	if((cmd.body) && typeof cmd.body === 'object') {
-		opts.body = JSON.stringify( cmd.body );
-		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '/'};
+		opts.json = cmd.body;
+		opts.headers = { 'Content-Type': 'multipart/form-data', 'Accept': '*/*'};
 		opts.method = 'POST';
 	}
 	
 	xhr( opts, function(err, resp, body) {
 		if (err) {
-			console.error( err );
+			throw new Error(err);
 		}
 		data(body);
 	} );
